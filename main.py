@@ -1,3 +1,4 @@
+import os
 import discord
 from keep_alive import keep_alive
 
@@ -21,4 +22,4 @@ async def on_message(message):
     
 
 keep_alive()
-client.run('ODY5MzE2NjIzNjI0OTgyNTI4.YP8cMg.W1_P0AJBnY7Doi-DVUWpjd5fz2o')
+client.run(os.getenv(('TOKEN')))
