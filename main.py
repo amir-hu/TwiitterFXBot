@@ -14,7 +14,7 @@ async def on_message(message):
         return
 
     if message.content.startswith("https://twitter.com"):
-      #await message.channel.send("hello")
+      
         
         newMessage = message.content.replace("https://twitter.com","https://fxtwitter.com")
         await message.channel.send(newMessage)
