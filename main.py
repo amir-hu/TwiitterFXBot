@@ -15,15 +15,15 @@ async def on_message(message):
 
 
 
-    if message.author.id == 716390085896962058:
-      try:
-        imagelink = message.embeds[0].image.url
-        prediction = getpred(imagelink)
-        print("after prediction")
-        await message.channel.send(prediction)
-      except:
-        pass
-  
+#"""    if message.author.id == 716390085896962058:
+#      try:
+#        imagelink = message.embeds[0].image.url
+#        prediction = getpred(imagelink)
+#        print("after prediction")
+#        await message.channel.send(prediction)
+#      except:
+#        pass 
+
     if message.author == client.user:
       try:
         embeds = message.embeds
@@ -121,9 +121,14 @@ async def on_message(message):
       result = alive - dead
       reaction = "No ones suprised really"
       if(result>0):
-        reaction = "MY GOD YOU NEVER THOUGHT YOU WOULD SEE THE DAY "
+        reaction = " MY GOD YOU NEVER THOUGHT YOU WOULD SEE THE DAY "
       newMessage = "Current ratio of barre crashing to pulling an undertaker is: " + str(dead) + " to " + str(alive) + " which puts us at a grand total of " +  str(result) + " " + reaction 
-      await message.channel.send(newMessage)
+      embed=discord.Embed(title="Barre Crashing to Undertakering", 
+      description=str(dead)+":"+str(alive), color=0xFF5733)
+      embed.add_field(name="Grand total", value=str(result) + " " + reaction)
+      
+      
+      await message.channel.send(embed=embed)
       f = open("Barre.txt", "w")
       f.write(str(alive) + ":" + str(dead))
       f.close()
@@ -140,12 +145,11 @@ async def on_message(message):
           newMessage = newMessage + "--" + data[x] + " "
       await  message.channel.send(newMessage)
       
-    if message.content.startswith("https://twitter.com"):
+      if message.content.startswith("https://twitter.com"):
       
         
-        newMessage = message.content.replace("https://twitter.com","https://fxtwitter.com")
+        newMessage = message.content.replace("https://twitter.com","https://vxtwitter.com")
         embeds = await message.channel.send(newMessage)
-        
     
 
 keep_alive()
