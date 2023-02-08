@@ -5,6 +5,7 @@ from keep_alive import keep_alive
 from modelbuild import getpred
 
 client = discord.Client()
+id = "716390085896962058"
 
 @client.event
 async def on_ready():
@@ -24,17 +25,9 @@ async def on_message(message):
 #      except:
 #        pass 
 
-    if message.author == client.user:
-      try:
-        embeds = message.embeds
-        print(embeds[0].to_dict()['description'])
-        if(embeds[0].to_dict()['description']=="Failed to scan your link!"):
-          await message.delete()
-      except:
-        pass
-
+    
     if message.content.lower().startswith("cm"):
-      newMessage = "p!m s --mine --o price-"
+      newMessage = f"<@{id}> m s --mine --o price-"
       await message.channel.send(newMessage)
 
     if message.content.lower().startswith("cl "):
@@ -43,7 +36,7 @@ async def on_message(message):
       data = message.content.split(" ")
       newMessage = "enter in format cp <pokemon name> <iv> <filters>"
       if(len(data) >= 3):
-        newMessage = "p!m s --n " + data[1] + " --level >" + data[2] + " --o price+ "
+        newMessage = f"<@{id}> m s --n " + data[1] + " --level >" + data[2] + " --o price+ "
         for x in range(3,len(data)):
           newMessage = newMessage + "--" + data[x] + " "
       await  message.channel.send(newMessage)
@@ -122,7 +115,7 @@ async def on_message(message):
       reaction = "No ones suprised really"
       if(result>0):
         reaction = " MY GOD YOU NEVER THOUGHT YOU WOULD SEE THE DAY "
-      newMessage = "Current ratio of barre crashing to pulling an undertaker is: " + str(dead) + " to " + str(alive) + " which puts us at a grand total of " +  str(result) + " " + reaction 
+      newMessage = "Current ratio of barre ghosting to pulling an undertaker is: " + str(dead) + " to " + str(alive) + " which puts us at a grand total of " +  str(result) + " " + reaction 
       embed=discord.Embed(title="Barre Crashing to Undertakering", 
       description=str(dead)+":"+str(alive), color=0xFF5733)
       embed.add_field(name="Grand total", value=str(result) + " " + reaction)
@@ -140,18 +133,19 @@ async def on_message(message):
       data = message.content.split(" ")
       newMessage = "enter in format cp <pokemon name> <iv> <filters>"
       if(len(data) >= 3):
-        newMessage = "p!m s --n " + data[1] + " --iv >" + data[2] + " --o price+ "
+        newMessage = f"<@{id}> m s --n " + data[1] + " --iv >" + data[2] + " --o price+ "
         for x in range(3,len(data)):
           newMessage = newMessage + "--" + data[x] + " "
       await  message.channel.send(newMessage)
       
-      if message.content.startswith("https://twitter.com"):
-      
-        
+    if message.content.startswith("https://twitter.com"):
         newMessage = message.content.replace("https://twitter.com","https://vxtwitter.com")
         embeds = await message.channel.send(newMessage)
     
 
 keep_alive()
-client.run(os.getenv(('TOKEN')))
+try:
+  client.run(os.getenv(('TOKEN')))
+except:
+  os.system("kill 1")
 
